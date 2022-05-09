@@ -20,18 +20,16 @@ class NetworkRepo @Inject constructor(var retrofitService: Retrofit_Service,var 
                 retrofitService.getCovidList().body()
                 println("hello"+Gson().toJson( retrofitService.getCovidList().body()))
 
-                        dbRepository.db.covidDao().insertCaseTimeSery(
+                        dbRepository.insertCaseTimeSeryData(
                             retrofitService.getCovidList().body()?.cases_time_series
                         );
 
-
-                dbRepository.db.covidDao().insertStatewise(
+                dbRepository.insertStatewiseData(
                     retrofitService.getCovidList().body()?.statewise);
-                dbRepository.db.covidDao().insertTested(
+
+                dbRepository.insertTestedData(
                     retrofitService.getCovidList().body()?.tested);
-
-//
-
+                
             }
         }catch (e:Exception){
             DataState.Error(e);

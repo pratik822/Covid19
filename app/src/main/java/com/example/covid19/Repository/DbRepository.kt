@@ -9,9 +9,9 @@ import javax.inject.Inject
 
 class DbRepository @Inject constructor(var db:AppDatabase) {
 
-    suspend fun insertCaseTimeSeryData(casesTimeSery: List<CasesTimeSery>)=db.covidDao().insertCaseTimeSery(casesTimeSery)
-    suspend fun insertStatewiseData(statewise: List<Statewise>)=db.covidDao().insertStatewise(statewise)
-    suspend fun insertTestedData(tested: List<Tested>)=db.covidDao().insertTested(tested)
+    suspend fun insertCaseTimeSeryData(casesTimeSery: List<CasesTimeSery>?)=db.covidDao().insertCaseTimeSery(casesTimeSery)
+    suspend fun insertStatewiseData(statewise: List<Statewise>?)=db.covidDao().insertStatewise(statewise)
+    suspend fun insertTestedData(tested: List<Tested>?)=db.covidDao().insertTested(tested)
 
 
     fun getCaseTimeSeryData():LiveData<List<CasesTimeSery>>{
