@@ -52,11 +52,11 @@ class tested_Fragment : Fragment() {
             }
         })
         viewmodel.getCovidData()?.observe(requireActivity(), Observer {
-            if(it.cases_time_series!=null && it.cases_time_series.size>0){
-                println("hello"+it.cases_time_series.size)
+            if(it.data?.cases_time_series!=null && it.data?.cases_time_series.size>0){
+                println("hello"+it.data.cases_time_series.size)
                 linearLayoutManager = LinearLayoutManager(requireContext())
                 binding.rv.layoutManager = linearLayoutManager
-                rvAdapter = rv_adapter_tested(requireContext(), it.tested);
+                rvAdapter = rv_adapter_tested(requireContext(), it.data.tested);
                 binding.rv.adapter=rvAdapter;
             }
 

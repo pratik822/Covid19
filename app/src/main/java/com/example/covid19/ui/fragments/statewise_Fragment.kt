@@ -55,11 +55,11 @@ class statewise_Fragment : Fragment() {
         })
 
         viewmodel.getCovidData()?.observe(requireActivity(), Observer {
-            if(it.cases_time_series!=null && it.cases_time_series.size>0){
-                println("hello"+it.cases_time_series.size)
+            if(it.data?.cases_time_series!=null && it.data?.cases_time_series.size>0){
+                println("hello"+it.data.cases_time_series.size)
                 linearLayoutManager = LinearLayoutManager(requireContext())
                 bindings.rv.layoutManager = linearLayoutManager
-                rvAdapter = rv_adapter_statewise(requireContext(), it.statewise);
+                rvAdapter = rv_adapter_statewise(requireContext(), it.data.statewise);
                 bindings.rv.adapter=rvAdapter;
             }
 

@@ -2,7 +2,6 @@ package com.example.covid19.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.example.covid19.Networking.db.AppDatabase
 import com.example.covid19.Networking.db.CovidDao
 import dagger.Module

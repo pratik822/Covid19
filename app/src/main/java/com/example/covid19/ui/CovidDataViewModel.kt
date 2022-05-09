@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.covid19.Networking.data.CovidDataResponse
 import com.example.covid19.Repository.NetworkRepo
 import com.example.covid19.utils.DataState
+import com.example.covid19.utils.Resources
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,7 +26,7 @@ class CovidDataViewModel @Inject constructor(var repo: NetworkRepo):ViewModel() 
 
      }
  }
-    fun getCovidData(): LiveData<CovidDataResponse>? {
+    fun getCovidData(): LiveData<Resources<CovidDataResponse>>? {
        return repo.getCovidList;
     }
 

@@ -5,18 +5,19 @@ import androidx.lifecycle.MutableLiveData
 import com.example.covid19.Networking.Retrofit_Service
 import com.example.covid19.Networking.data.CovidDataResponse
 import com.example.covid19.utils.DataState
+import com.example.covid19.utils.Resources
 import com.google.gson.Gson
 import javax.inject.Inject
 
 class NetworkRepo @Inject constructor(var retrofitService: Retrofit_Service,var dbRepository: DbRepository) {
-    var covidListLiveData=MutableLiveData<CovidDataResponse>();
-    suspend fun getCovidData():LiveData<CovidDataResponse>?{
-        DataState.Loading;
+    var covidListLiveData=MutableLiveData<Resources<CovidDataResponse>>();
+    suspend fun getCovidData(): MutableLiveData<Resources<CovidDataResponse>> {
+       covidListLiveData.postValue(Resources.loading(null));
         try {
             if(retrofitService.getCovidList()!=null && retrofitService.getCovidList().isSuccessful){
                 retrofitService.getCovidList().body();
-                covidListLiveData.postValue(retrofitService.getCovidList().body())
-                DataState.success(retrofitService.getCovidList().body())
+                covidListLiveData.postValue(Resources.success((retrofitService.getCovidList().body()!!)))
+               // DataState.success(retrofitService.getCovidList().body())
                 retrofitService.getCovidList().body()
                 println("hello"+Gson().toJson( retrofitService.getCovidList().body()))
 
@@ -32,11 +33,11 @@ class NetworkRepo @Inject constructor(var retrofitService: Retrofit_Service,var 
                 
             }
         }catch (e:Exception){
-            DataState.Error(e);
+            covidListLiveData.postValue(Resources.error(e.message.toString(),null))
         }
 
         return covidListLiveData;
     }
-    val getCovidList:LiveData<CovidDataResponse>
+    val getCovidList: MutableLiveData<Resources<CovidDataResponse>>
     get() = covidListLiveData;
 }

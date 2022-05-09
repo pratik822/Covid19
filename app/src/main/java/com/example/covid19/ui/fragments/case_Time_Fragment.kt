@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -16,6 +17,9 @@ import com.example.covid19.databinding.FragmentCovidDataBinding
 import com.example.covid19.ui.CovidDataViewModel
 import com.example.covid19.ui.CovidDataViewModeldb
 import com.example.covid19.ui.adapter.rv_adapter_casetime
+import com.example.covid19.utils.DataState
+import com.example.covid19.utils.Resources
+import com.example.covid19.utils.Status
 
 
 class case_Time_Fragment : Fragment() {
@@ -50,16 +54,33 @@ class case_Time_Fragment : Fragment() {
         })
 
         viewmodel.getCovidData()?.observe(requireActivity(), Observer {
-            if(it.cases_time_series!=null && it.cases_time_series.size>0){
-                println("hello"+it.cases_time_series.size)
-                linearLayoutManager = LinearLayoutManager(requireContext())
-                binding.rv.layoutManager = linearLayoutManager
-                rvAdapter = rv_adapter_casetime(requireContext(), it.cases_time_series);
-                binding.rv.adapter=rvAdapter;
+
+            when (it.status) {
+                Status.LOADING->{
+                    println("Loading...");
+                }
+                Status.SUCCESS->{
+                    if (it.data?.cases_time_series != null && it.data?.cases_time_series.size > 0) {
+                        if (it.data.cases_time_series != null && it.data.cases_time_series.size > 0) {
+                            println("hello" + it.data.cases_time_series.size)
+                            linearLayoutManager = LinearLayoutManager(requireContext())
+                            binding.rv.layoutManager = linearLayoutManager
+                            rvAdapter =
+                                rv_adapter_casetime(requireContext(), it.data.cases_time_series);
+                            binding.rv.adapter = rvAdapter;
+
+                        }
+
+                    }
+                }
+                Status.ERROR->{
+                    println("Error occured");
+                }
 
             }
 
-        })
+        });
+
 
 
         return view;
