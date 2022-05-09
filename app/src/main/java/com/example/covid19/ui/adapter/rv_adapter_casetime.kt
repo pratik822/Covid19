@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.covid19.Networking.data.CasesTimeSery
 import com.example.covid19.R
 import com.example.covid19.databinding.RvListBinding
-import com.example.covid19.ui.CustomDialog
+import com.example.covid19.utils.CustomDialog
 
 class rv_adapter_casetime(var context: Context, var list: List<CasesTimeSery>):RecyclerView.Adapter<rv_adapter_casetime.ViewHolder>() {
 

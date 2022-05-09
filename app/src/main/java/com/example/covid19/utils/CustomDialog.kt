@@ -1,4 +1,4 @@
-package com.example.covid19.ui
+package com.example.covid19.utils
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -9,7 +9,6 @@ import com.example.covid19.Networking.data.CasesTimeSery
 import com.example.covid19.Networking.data.Statewise
 import com.example.covid19.Networking.data.Tested
 import com.example.covid19.R
-import com.google.gson.Gson
 
 class CustomDialog<T>(context: Context, args: T):Dialog(context,0)  {
     init {

@@ -1,4 +1,4 @@
-package com.example.covid19.ui
+package com.example.covid19.ui.fragments
 
 import android.os.Build
 import android.os.Bundle
@@ -11,6 +11,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.covid19.databinding.FragmentCovidData2Binding
+import com.example.covid19.ui.CovidDataViewModel
+import com.example.covid19.ui.CovidDataViewModeldb
 import com.example.covid19.ui.adapter.rv_adapter_statewise
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,8 +30,8 @@ class statewise_Fragment : Fragment() {
     private lateinit var bindings:FragmentCovidData2Binding;
     lateinit var rvAdapter: rv_adapter_statewise;
     private lateinit var linearLayoutManager: LinearLayoutManager
-    val viewmodel:CovidDataViewModel by activityViewModels()
-    val viewmodeldb:CovidDataViewModeldb by activityViewModels()
+    val viewmodel: CovidDataViewModel by activityViewModels()
+    val viewmodeldb: CovidDataViewModeldb by activityViewModels()
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

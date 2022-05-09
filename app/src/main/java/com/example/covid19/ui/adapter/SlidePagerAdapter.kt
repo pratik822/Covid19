@@ -4,9 +4,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.covid19.ui.case_Time_Fragment
-import com.example.covid19.ui.statewise_Fragment
-import com.example.covid19.ui.tested_Fragment
+import com.example.covid19.ui.fragments.case_Time_Fragment
+import com.example.covid19.ui.fragments.statewise_Fragment
+import com.example.covid19.ui.fragments.tested_Fragment
 
 public class SlidePagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
